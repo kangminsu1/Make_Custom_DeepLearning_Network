@@ -10,7 +10,7 @@
 
 또한 본 개발에서는 Car Object Detection을 Customization 하기 위해 국내 Police Car Detection을 구현하였습니다.
 
-##1. Make Dataset using Google Images 
+## 1. Make Dataset using Google Images 
 
 먼저 딥러닝 학습을 진행하기 위해서는 기본적으로 학습하고자 하는 Dataset가 필요하다. 보통 Image(.jpg, .png 등등) 파일과 각 Image에서 학습하고자 하는 Object의 좌표(이미지 내 좌표)를 담고 있는 Label(.txt)를 바탕으로 수행된다.
 
@@ -29,7 +29,7 @@ $> python download_images.py --urls urls.txt --output train_data/images/train
 ```
 7. 마찬가지로, validation을 위한 image 4~10장 정도(?)를 추려 train_data/images/val 에 저장한다.
 
-##2. Labeling and Remove Residual Images
+## 2. Labeling and Remove Residual Images
 
 1번과 같이 진행하여 무수히 많은 image를 확인할 수 있을 것이다. 하지만 모든 이미지가 다 원하는 이미지가 아닐 수 있기 떄문에, 원하는 이미지만을 Labeling 하고 그외 이미지는 버리는 과정을 진행한다.
 이는 [DeepLearing](https://www.youtube.com/watch?v=GRtgLlwxpc4&t=734s) 의 Youtube 채널을 참고한다.
@@ -43,7 +43,7 @@ $> python download_images.py --urls urls.txt --output train_data/images/train
 7. validation image 또한 위와 같이 작업하여 train_data/labels/val 에 옮긴다.
 8. 이후, labeling 하지 않은 이미지를 삭제하기 위해 remove_without_labeled.py를 실행한다.
 
-##3. Training and Testing with YOLOv5
+## 3. Training and Testing with YOLOv5
 
 이제 Dataset이 구축이 되었다면, YOLOv5를 기반으로 학습을 진행한다. 학습 방법은 [빵형의 개발도상국](https://www.youtube.com/watch?v=T0DO1C8uYP8&t=820s) 의 Youtube 채널을 참고한다.
 
@@ -59,21 +59,21 @@ names: ['police']
 
 .yaml를 수정한 뒤, 위의 Youtube를 참고하여 학습을 진행한다.
 
-###[Learning Progress]
+### [Learning Progress]
 
 ![Progress](img/learing_process.png)
 
 이후 학습이 잘 진행되었다면, 이 모델에 대한 성능을 확인할 수 있다. 본 개발에서는 precision과 recall이 0.8~0.9를 나타내며, Train, validation Loss 또한 0에 근접한 것을 확인할 수 있다.
 
-###[Results of the Model Performance]
+### [Results of the Model Performance]
 
 ![metrics](img/metrics.PNG)
 ![train](img/train.PNG)
 ![validation](img/validation.PNG)
 
-####학습이 다 완료되었다면, weight 폴더 내 best.pt를 다운로드받아 Main.py가 들어있는 폴더에 저장한다.
+#### 학습이 다 완료되었다면, weight 폴더 내 best.pt를 다운로드받아 Main.py가 들어있는 폴더에 저장한다.
 
-##4. Implementation
+## 4. Implementation
 
 3번에서 학습한 모델을 기반으로 객체 검출을 활용하기 위해, 본 개발에서는 컴퓨터 화면에서의 영상을 실시간으로 파싱하여 검출하는 코드를 작성하였다. 
 
@@ -81,7 +81,7 @@ names: ['police']
 
 이후 객체가 검출되어 score가 0.5 이상이 될 경우, System의 Beep 소리와 함께 청각과 시각적으로 확인할 수 있다.
 
-###[Monitering from the Main.py]
+### [Monitering from the Main.py]
 
 ![result1](img/results.PNG)
 ![result2](img/results2.PNG)
